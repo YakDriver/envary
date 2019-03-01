@@ -1,0 +1,90 @@
+default: install
+environments:
+  - environment: install
+    packages:
+    - backoff
+    - six
+    - PyYAML
+    python_version:
+    - less_than: 2.7
+      packages:
+      - click<7
+      - wheel<=0.29.0
+    - less_than: 3
+      packages:
+      - futures
+    platform_system:
+    - platform: "Windows"
+      packages:
+      - defusedxml
+      - pypiwin32
+  - environment: build
+    packages:
+    - gravitybee
+  - environment: check
+    packages:
+    - check-manifest
+    - flake8
+    - flake8-bugbear
+    - flake8-builtins
+    - flake8-docstrings
+    - flake8-isort
+    - flake8-future-import
+    - flake8-print
+    - isort
+    - m2r
+    - pep8-naming
+    - pydocstyle
+    - pygments
+    - pylint
+    - readme-renderer
+  - environment: deploy
+    packages:
+    - satsuki
+  - environment: docs
+    packages:
+    - m2r
+    - setuptools
+    - sphinx
+    - sphinx-rtd-theme
+  - environment: pip
+    packages:
+    - pip
+  - environment: report
+    packages:
+    - argparse
+    platform_system:
+    - platform: "Windows"
+      packages:
+      - codecov
+    - not_platform: "Windows"
+      packages:
+      - codecov
+      - pypiwin32    
+  - environment: test
+    packages:
+    - mock  
+    - pytest-travis-fold
+    python_version:
+    - equal: 2.6
+      packages:
+      - pytest
+      - pytest-catchlog
+      - pytest-cov
+      - pytest-mock
+    - equal: 2.7
+      packages:
+      - pytest
+    - equal: 3.3
+      packages:
+      - pytest
+    - equal: 3.4
+      packages:
+      - pytest
+    - greater_than_equal: 2.7
+      packages:
+      - pytest-cov
+      - pytest-mock
+    - less_than_equal: 2.6
+      packages:
+      - wheel
